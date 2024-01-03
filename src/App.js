@@ -8,18 +8,30 @@ function App() {
   const refCaja = useRef();
   function incrementar(e) {
     e.target.innerHTML = Number(e.target.innerHTML) + 1;
+    if (e.target.innerHTML >= 10) {
+      e.target.innerHTML = 1;
+    }
+    if (e.target.innerHTML >= 8) {
+      e.target.style.backgroundColor = "red";
+    } else {
+      e.target.style.backgroundColor = "white";
+    }
   }
   //  e.target.style.backgroundColor="peru";
-  const convertir=()=> {
+  const convertir = () => {
     refCaja.current.innerHTML = Number(refCaja.current.innerHTML) * cambio;
-  }
+  };
 
-  const cambiar=(j)=> {
-    j.target.src = imagen1;
-  }
-  const lectura=(e)=>{
-    refCaja.current.innerHTML=e.target.value;
-  }
+  const cambiar = (j) => {
+    if (j.target.src.includes("ataulfo")) {
+      j.target.src = imagen1;
+    } else {
+      j.target.src = imagen0;
+    }
+  };
+  const lectura = (e) => {
+    refCaja.current.innerHTML = e.target.value;
+  };
 
   return (
     <>
@@ -28,7 +40,7 @@ function App() {
       </div>
       <button onClick={convertir}>Aceptar</button>
       <div>
-        <img onClick={cambiar} src={imagen0}/>
+        <img onClick={cambiar} src={imagen0} />
       </div>
       <input onChange={lectura} className="campo" />
     </>
